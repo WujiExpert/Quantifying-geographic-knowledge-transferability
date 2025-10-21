@@ -1,115 +1,115 @@
-# 地理知识可迁移性分析项目使用说明
+# Geographic Knowledge Transferability Analysis Project - User Guide
 
-## 环境准备
+## Environment Setup
 
-### 1. 安装Python依赖
+### 1. Install Python Dependencies
 
 ```bash
-# 安装主要依赖包
+# Install main dependency packages
 pip install numpy pandas matplotlib seaborn scikit-learn scipy tqdm openpyxl
 
-# 或者使用requirements.txt
+# Or use requirements.txt
 pip install -r requirements.txt
 ```
 
-### 2. 项目结构
+### 2. Project Structure
 
-确保项目目录结构如下：
+Ensure the project directory structure is as follows:
 ```
 geoTransferAnalysis/
-├── data/                    # 数据文件
-├── model/                   # 核心代码
-│   ├── main_opt.py         # 主程序
+├── data/                    # Data files
+├── model/                   # Core code
+│   ├── main_opt.py         # Main program
 │   └── ...
-├── results/                 # 结果输出
-└── README.md               # 项目文档
+├── results/                 # Results output
+└── README.md               # Project documentation
 ```
 
-## 快速开始
+## Quick Start
 
-### 步骤1：准备数据
+### Step 1: Prepare Data
 
-将您的数据文件放入 `data/` 目录，当前已有的示例数据如下：
+Place your data files in the `data/` directory. Current sample data includes:
 
-- **土壤数据**: `soil_train.csv`
-- **犯罪数据**: `community_crime_stats.xlsx`
-- **SDP数据**: `ecpr_case.xlsx` 和 `region.xlsx`
+- **Soil Data**: `soil_train.csv`
+- **Crime Data**: `community_crime_stats.xlsx`
+- **SDP Data**: `ecpr_case.xlsx` and `region.xlsx`
 
-### 步骤2：运行基础地理知识可迁移性评估分析
+### Step 2: Run Basic Geographic Knowledge Transferability Assessment Analysis
 
-编辑 `model/main_opt.py`，在 `if __name__ == "__main__":` 部分取消注释相应的分析函数：
+Edit `model/main_opt.py`, uncomment the corresponding analysis functions in the `if __name__ == "__main__":` section:
 
 ```python
-# 土壤数据分析
+# Soil data analysis
 print("Running basic analyses...")
 soil_result = run_soil_analysis()
 # crime_result = run_crime_analysis()
 # sdp_result = run_sdp_analysis()
 ```
 
-然后运行：
+Then run:
 ```bash
 python model/main_opt.py
 ```
 
-### 步骤3：地理知识可迁移关键影响因子分析
+### Step 3: Geographic Knowledge Transfer Key Impact Factor Analysis
 
-编辑 `model/main_opt.py`，在 `if __name__ == "__main__":` 部分取消注释相应的分析函数：
+Edit `model/main_opt.py`, uncomment the corresponding analysis functions in the `if __name__ == "__main__":` section:
 
 ```python
-# 土壤数据关键因子分析
+# Soil data key factor analysis
 # soil_key_result = run_soil_key_factor_analysis('climate_type', 'categorical')
 
-# 犯罪数据关键因子分析
+# Crime data key factor analysis
 # crime_key_result = run_crime_key_factor_analysis('TotIncome', 'numerical', 3, 'kmeans')
 
-# SDP数据关键因子分析
+# SDP data key factor analysis
 # sdp_key_result = run_sdp_key_factor_analysis('climate_type_final', 'categorical', top_k=5)
 ```
 
-### 步骤4：查看结果
+### Step 4: View Results
 
-分析完成后，结果将保存在 `results/` 目录中：
+After analysis is complete, results will be saved in the `results/` directory:
 
-- **预测结果**: `prediction_sdp_with_groups_{key_factor}.xlsx`
-- **统计检验**: `significance_test_{key_factor}.json`
-- **可视化图表**: `figures/` 目录下的各种图表
+- **Prediction Results**: `prediction_sdp_with_groups_{key_factor}.xlsx`
+- **Statistical Tests**: `significance_test_{key_factor}.json`
+- **Visualization Charts**: Various charts in the `figures/` directory
 
 
 
-## 常用参数配置
+## Common Parameter Configuration
 
-### 函数调用示例
+### Function Call Examples
 
-#### 基础分析
+#### Basic Analysis
 ```python
-# 土壤分析
+# Soil analysis
 soil_result = run_soil_analysis()
 
-# 犯罪分析
+# Crime analysis
 crime_result = run_crime_analysis()
 
-# SDP分析
+# SDP analysis
 sdp_result = run_sdp_analysis()
 ```
 
-#### 关键因子分析
+#### Key Factor Analysis
 ```python
-# 土壤关键因子分析 (使用默认参数)
-soil_key_result = run_soil_key_factor_analysis()  # 默认: clay_S, numerical, 3, kmeans
+# Soil key factor analysis (using default parameters)
+soil_key_result = run_soil_key_factor_analysis()  # Default: clay_S, numerical, 3, kmeans
 
-# 土壤关键因子分析 (自定义参数)
+# Soil key factor analysis (custom parameters)
 soil_key_result = run_soil_key_factor_analysis(
-    key_factor='climate_type',      # 关键因子名称
-    factor_type='categorical',      # 因子类型: 'numerical' 或 'categorical'
-    num_classes=3,                  # 分组数量 (仅数值型)
-    group_method='kmeans'           # 分组方法: 'kmeans', 'quantile', 'jenks'
+    key_factor='climate_type',      # Key factor name
+    factor_type='categorical',      # Factor type: 'numerical' or 'categorical'
+    num_classes=3,                  # Number of groups (numerical only)
+    group_method='kmeans'           # Grouping method: 'kmeans', 'quantile', 'jenks'
 )
 
-# 犯罪关键因子分析 (使用默认参数)
-crime_key_result = run_crime_key_factor_analysis()  # 默认: RentPct, numerical, 3, kmeans
+# Crime key factor analysis (using default parameters)
+crime_key_result = run_crime_key_factor_analysis()  # Default: RentPct, numerical, 3, kmeans
 
-# 犯罪关键因子分析 (自定义参数)
+# Crime key factor analysis (custom parameters)
 crime_key_result = run_crime_key_factor_analysis(
     key_factor='TotIncome',
     factor_type='numerical',
@@ -117,43 +117,43 @@ crime_key_result = run_crime_key_factor_analysis(
     group_method='kmeans'
 )
 
-# SDP关键因子分析 (使用默认参数)
-sdp_key_result = run_sdp_key_factor_analysis()  # 默认: climate_type_final, categorical, 4, kmeans, 5
+# SDP key factor analysis (using default parameters)
+sdp_key_result = run_sdp_key_factor_analysis()  # Default: climate_type_final, categorical, 4, kmeans, 5
 
-# SDP关键因子分析 (自定义参数)
+# SDP key factor analysis (custom parameters)
 sdp_key_result = run_sdp_key_factor_analysis(
     key_factor='climate_type_final',
     factor_type='categorical',
-    top_k=5                         # TOP-K评估参数
+    top_k=5                         # TOP-K evaluation parameter
 )
 ```
 
-### 分组设置
+### Grouping Settings
 
 ```python
-# 数值型因子分组
+# Numerical factor grouping
 factor_type='numerical'
-num_classes=3  # 或 4, 5
+num_classes=3  # or 4, 5
 group_method='kmeans'  # 'kmeans', 'quantile', 'jenks'
 
-# 分类型因子分组
+# Categorical factor grouping
 factor_type='categorical'
 ```
 
-### 评估设置
+### Evaluation Settings
 
 ```python
-# TOP-K评估 (多分类)
-top_k=5  # 或 3, 10
+# TOP-K evaluation (multiclass)
+top_k=5  # or 3, 10
 
-# Bootstrap设置
-n_bootstrap=1000  # 或 500, 2000
-alpha=0.05  # 显著性水平
+# Bootstrap settings
+n_bootstrap=1000  # or 500, 2000
+alpha=0.05  # Significance level
 ```
 
-## 数据格式示例
+## Data Format Examples
 
-### 土壤数据格式
+### Soil Data Format
 ```csv
 id,clay_S,sand_S,Elevation,OC,LU
 1,0.25,0.45,120.5,1.2,Forest
@@ -161,7 +161,7 @@ id,clay_S,sand_S,Elevation,OC,LU
 ...
 ```
 
-### 多分类数据格式
+### Multi-class Data Format
 ```csv
 id,feature1,feature2,patterns
 1,0.5,0.3,"[1,2,3]"
@@ -169,48 +169,48 @@ id,feature1,feature2,patterns
 ...
 ```
 
-## 结果解释
+## Result Interpretation
 
-### 评估指标含义
+### Evaluation Metric Meanings
 
-- **RMSE**: 均方根误差，越小越好
-- **R²**: 决定系数，越接近1越好
-- **TOP-K准确率**: 前K个预测中包含真实标签的比例
-- **F1分数**: 精确率和召回率的调和平均
-- **Cohen's f²**: 决定系数效应量
-- **SF1G**: F1分数的效应量
+- **RMSE**: Root Mean Square Error, smaller is better
+- **R²**: Coefficient of Determination, closer to 1 is better
+- **TOP-K Accuracy**: Proportion of true labels in top K predictions
+- **F1 Score**: Harmonic mean of precision and recall
+- **Cohen's f²**: Effect size of coefficient of determination
+- **SF1G**: Effect size of F1 score
 
-### 基于环境因子样本分组对地理知识迁移影响评估
+### Assessment of Geographic Knowledge Transfer Impact Based on Environmental Factor Sample Grouping
 
-- **组内预测**: 同一组内的预测性能
-- **组间预测**: 不同组间的预测性能
-- **迁移性影响程度**: 组间与组内性能的差异，以及统计检验结果
+- **Within-group Prediction**: Prediction performance within the same group
+- **Cross-group Prediction**: Prediction performance across different groups
+- **Transferability Impact Level**: Difference between cross-group and within-group performance, along with statistical test results
 
-### 统计显著性
+### Statistical Significance
 
-- **p值 < 0.05**: 差异具有统计显著性
-- **置信区间**: 不包含0表示差异显著
+- **p-value < 0.05**: Difference is statistically significant
+- **Confidence Interval**: Not containing 0 indicates significant difference
 
-## 快速使用示例
+## Quick Usage Example
 
-### 土壤分析示例
+### Soil Analysis Example
 
-1. 编辑 `model/main_opt.py`：
+1. Edit `model/main_opt.py`:
 ```python
 if __name__ == "__main__":
-    # 基础分析
+    # Basic analysis
     print("Running basic analyses...")
     soil_result = run_soil_analysis()
     # crime_result = run_crime_analysis()
     # sdp_result = run_sdp_analysis()
     
-    # 关键因子分析
+    # Key factor analysis
     # print("\nRunning key factor analyses...")
     # soil_key_result = run_soil_key_factor_analysis('climate_type', 'categorical')
     # crime_key_result = run_crime_key_factor_analysis('TotIncome', 'numerical', 3, 'kmeans')
     # sdp_key_result = run_sdp_key_factor_analysis('climate_type_final', 'categorical', top_k=5)
     
-    # 自定义多分类配置示例
+    # Example of using unified framework for any multiclass configuration
     # custom_multiclass_config = create_multiclass_config(
     #     data_paths=['../data/region.xlsx', '../data/ecpr_case.xlsx'],
     #     target_variable='patterns',
@@ -221,18 +221,18 @@ if __name__ == "__main__":
     #     custom_multiclass_config, 'climate_type_final', 'categorical', 3, 'jenks'
     # )
     
-    # 寻找最优阈值
+    # Find optimal threshold
     # optimal_kappa = find_optimal_kappa()
     
     print("\nAll analyses completed successfully!")
 ```
 
-2. 运行分析：
+2. Run analysis:
 ```bash
 python model/main_opt.py
 ```
 
-3. 查看结果：
-- 基础分析结果：`results/basic_analysis_results.csv`
-- 关键因子分析结果：`results/{key_factor}_group_analysis_results.csv`
-- 统计检验结果：`results/significance_test_{key_factor}.json`
+3. View results:
+- Basic analysis results: `results/basic_analysis_results.csv`
+- Key factor analysis results: `results/{key_factor}_group_analysis_results.csv`
+- Statistical test results: `results/significance_test_{key_factor}.json` 
