@@ -202,18 +202,18 @@ def evaluate_model_performance_f1(y_true, y_pred, n_bootstrap=1000, alpha=0.05, 
 
 if __name__ == "__main__":
     # using example of soil organic carbon prediction
-    # data_path = r"../results/basic_analysis_results.csv"
-    # data = pd.read_csv(data_path)
-    # result = evaluate_model_performance_r2(data['OC'], data['predicted'])
+    data_path = r"../results/basic_analysis_results.csv"
+    data = pd.read_csv(data_path)
+    result = evaluate_model_performance_r2(data['OC'], data['predicted'])
 
-    # using example of soil organic carbon prediction
+    # using example of crime rate prediction
     # data_path = r"../results/basic_analysis_results.csv"
     # data = pd.read_csv(data_path)
     # result = evaluate_model_performance_r2(data['CrimeRate'], data['predicted'])
 
     # using example of sdp recommendation
-    data_path = r"../results/basic_analysis_results.csv"
-    data = pd.read_csv(data_path)
-    result = evaluate_model_performance_f1(data['patterns'].tolist(), data['predicted'].tolist())
+    # data_path = r"../results/basic_analysis_results.csv"
+    # data = pd.read_csv(data_path)
+    # result = evaluate_model_performance_f1(data['patterns'].tolist(), data['predicted'].tolist())
 
     print(result)

@@ -116,7 +116,7 @@ class DataProcessor:
                 processed_data[f'{config.target_variable}_original'] = processed_data[config.target_variable]
                 processed_data[config.target_variable] = np.log(processed_data[config.target_variable])
                 # Visualize distribution
-                DataProcessor._plot_distribution(processed_data, config.target_variable)
+                #DataProcessor._plot_distribution(processed_data, config.target_variable)
 
             # Remove outliers
             print("Removing outliers...")
@@ -126,8 +126,7 @@ class DataProcessor:
             )
             processed_data = processed_data.drop(outlier_indices).reset_index(drop=True)
         
-        print(f"Data preprocessing completed. Original samples: {len(data)}, "
-              f"Cleaned samples: {len(processed_data)}")
+        print(f"Data preprocessing completed.")
         
         return processed_data
     

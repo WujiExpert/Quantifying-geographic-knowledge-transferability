@@ -173,4 +173,8 @@ def visualize_correlation_scatter(data_path, target_colum):
 
 if __name__ == "__main__":
     data_path = r"../results/basic_analysis_results.csv"
-    visualize_correlation_scatter(data_path, 'CrimeRate')
+    # for SOC
+    visualize_correlation_scatter(data_path, 'OC')
+
+    #for Crime rate
+    #visualize_correlation_scatter(data_path, 'CrimeRate')
